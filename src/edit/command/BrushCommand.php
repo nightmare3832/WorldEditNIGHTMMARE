@@ -26,7 +26,7 @@ class BrushCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"ブラシを選択します",
-			"//brush <sphere|cylinder|clipboard|smooth|extinguish|gravity|butcher>"
+			"//brush <sphere|cylinder|clipboard|smooth|gravity>"
 		);
 	}
 
