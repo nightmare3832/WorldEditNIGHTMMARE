@@ -138,9 +138,6 @@ class BrushCommand extends VanillaCommand{
 
 					$this->gravityBrush($sender, (float) $args[1], $fromMaxY);
 					break;
-				case "butcher":
-				case "kill":
-					break;
 				default:
 					break;
 			}
