@@ -75,7 +75,7 @@ class Main extends PluginBase implements Listener{
 
 	public function onEnable(){
 		self::$instance = $this;
-		Server::getInstance()->getLogger()->info("[Edit]§a WorldEditNIGHTMARE_v3.5.3を読み込みました");
+		Server::getInstance()->getLogger()->info("[Edit]§a WorldEditNIGHTMARE_v3.5.4を読み込みました");
 		Server::getInstance()->getPluginManager()->registerEvents($this,  $this);
 		if(!file_exists($this->getDataFolder())) mkdir($this->getDataFolder(), 0744, true);
 		if(!file_exists($this->getDataFolder()."clipboard")) mkdir($this->getDataFolder()."clipboard", 0744, true);
