@@ -20,7 +20,7 @@ class ReplaceCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"範囲内のブロックを置き換えます",
-			"//replace [置き換えるブロック] <億ブロック>"
+			"//replace [置き換えるブロック] <置くブロック>"
 		);
 	}
 
