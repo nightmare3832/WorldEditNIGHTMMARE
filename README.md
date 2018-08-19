@@ -107,27 +107,32 @@ IDは単体で入力することができます
 ### //overlay <ブロックパターン>
 選択範囲内のブロックの上にブロックを設置します
 
-## //undo [回数]
+### //undo [回数]
 回数分だけ操作を元に戻します
 
-## //redo [回数]
+### //redo [回数]
 回数分だけ操作をやり直します
 
 ### //brush <sphere|cylinder|clipboard|smooth|gravity>
+
 //brush sphere
     //brush sphere <ブロックパターン> [半径]
     球体を生成します
     フラグ: -h をつけると空洞にします
+
 //brush cylinder
     //brush cylinder <ブロックパターン> [半径] [高さ]
     円柱を生成します
     フラグ: -h をつけると空洞にします
+
 //brush clipboard
     //brush clipboard
     クリップボードを貼り付けます
+
 //brush smooth
     //brush smooth [サイズ] [回数]
     地形を回数分滑らかにします
+
 //brush gravity
     //brush gravity [半径]
     重力を発生させます
