@@ -34,8 +34,14 @@ class RotateCommand extends VanillaCommand{
 			return true;
 		}
 
+		if($args[0] === "help"){
+			$sender->sendMessage("§c効果: §aクリップボードを回転します\n".
+					     "§c使い方: §a//rotate <Y軸> [<X軸>] [<Z軸>]");
+			return false;
+		}
+
 		if(count($args) < 1){
-			$sender->sendMessage("§c使い方: //rotate <Y軸> [<X軸>] [<Z軸>]");
+			$sender->sendMessage("§c使い方: §a//rotate <Y軸> [<X軸>] [<Z軸>]");
 			return;
 		}
 

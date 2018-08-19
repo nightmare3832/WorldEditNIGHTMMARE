@@ -18,7 +18,7 @@ class RedoCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"‚â‚è’¼‚·",
-			"//redo"
+			"//redo [‰ñ”]"
 		);
 	}
 
@@ -29,6 +29,12 @@ class RedoCommand extends VanillaCommand{
 
 		if(!($sender instanceof Player)){
 			return true;
+		}
+
+		if($args[0] === "help"){
+			$sender->sendMessage("˜cŒø‰Ê: ˜a‚â‚è’¼‚µ‚Ü‚·\n".
+					     "˜cŽg‚¢•û: ˜a//redo [‰ñ”]");
+			return false;
 		}
 
 		$session = Main::getInstance()->getEditSession($sender);

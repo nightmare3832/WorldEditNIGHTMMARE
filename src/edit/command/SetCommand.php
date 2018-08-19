@@ -32,9 +32,14 @@ class SetCommand extends VanillaCommand{
 			return true;
 		}
 
-		$copyEntities = false;
+		if($args[0] === "help"){
+			$sender->sendMessage("§c効果: §a選択した範囲を指定したブロックに置換します\n".
+					     "§c使い方: §a//set <ブロックパターン>");
+			return false;
+		}
 
 		if(count($args) < 1){
+			$sender->sendMessage("§c使い方: §a//set <ブロックパターン>");
 			return true;
 		}
 

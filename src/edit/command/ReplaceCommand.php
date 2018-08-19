@@ -33,7 +33,11 @@ class ReplaceCommand extends VanillaCommand{
 			return true;
 		}
 
-		$copyEntities = false;
+		if($args[0] === "help"){
+			$sender->sendMessage("§c効果: §a範囲内のブロックを置き換えます\n".
+					     "§c使い方: §a//replace [置き換えるブロック] <置くブロック>");
+			return false;
+		}
 
 		if(count($args) < 2){
 			return true;

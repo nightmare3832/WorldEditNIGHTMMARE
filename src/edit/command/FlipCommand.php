@@ -34,6 +34,12 @@ class FlipCommand extends VanillaCommand{
 			return true;
 		}
 
+		if($args[0] === "help"){
+			$sender->sendMessage("§c効果: §aクリップボードをひっくり返します\n".
+					     "§c使い方: §a//flip [<方向>]");
+			return false;
+		}
+
 		if(count($args) < 1){
 			$direction = Main::getCardinalDirection($sender);
 		}else{

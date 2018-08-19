@@ -19,7 +19,7 @@ class CylinderCommand extends VanillaCommand{
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"柱体を生成します",
+			"円柱を生成します",
 			"//cylinder <ブロックパターン> <半径>[,<半径>], <高さ>"
 		);
 	}
@@ -31,6 +31,13 @@ class CylinderCommand extends VanillaCommand{
 
 		if(!($sender instanceof Player)){
 			return true;
+		}
+
+		if($args[0] === "help"){
+			$sender->sendMessage("§c効果: §a円柱を生成します\n".
+					     "§c使い方: §a//cylinder <ブロックパターン> <半径>[,<半径>], <高さ>\n".
+					     "§cフラグ: §a-h: 空洞にします");
+			return false;
 		}
 
 		$copyEntities = false;
@@ -66,7 +73,7 @@ class CylinderCommand extends VanillaCommand{
 				$radiusZ = (float) $radii[1];
 				break;
 			default:
-				$sender->sendMessage("半径の値が足りません");
+				$sender->sendMessage("半径の値が過不足しています");
 				return true;
 		}
 

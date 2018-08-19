@@ -18,7 +18,7 @@ class MaskCommand extends VanillaCommand{
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"フィルターを設定します",
+			"ブラシのフィルターを設定します",
 			"//mask [フィルター]"
 		);
 	}
@@ -30,6 +30,12 @@ class MaskCommand extends VanillaCommand{
 
 		if(!($sender instanceof Player)){
 			return true;
+		}
+
+		if($args[0] === "help"){
+			$sender->sendMessage("§c効果: §aブラシのフィルターを設定します\n".
+					     "§c使い方: §a//mask [フィルター]");
+			return false;
 		}
 
 		if(count($args) < 1){

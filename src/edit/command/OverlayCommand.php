@@ -32,7 +32,14 @@ class OverlayCommand extends VanillaCommand{
 			return true;
 		}
 
+		if($args[0] === "help"){
+			$sender->sendMessage("§c効果: §a範囲内のブロックの上にブロックを設置します\n".
+					     "§c使い方: §a//overlay <ブロックパターン>");
+			return false;
+		}
+
 		if(count($args) < 1){
+			$sender->sendMessage("§c使い方: §a//overlay <ブロックパターン>");
 			return true;
 		}
 

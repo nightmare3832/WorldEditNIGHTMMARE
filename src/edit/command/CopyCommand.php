@@ -36,6 +36,14 @@ class CopyCommand extends VanillaCommand{
 			return true;
 		}
 
+		if($args[0] === "help"){
+			$sender->sendMessage("§c効果: §a選択している範囲をクリップボードにコピーします\n".
+					     "§c使い方: §a//copy\n".
+					     "§cフラグ: §a-e: エンティティーもコピーします\n".
+					     "§c      : §a-m: -----------");
+			return false;
+		}
+
 		$check = FlagChecker::check($args);
 
 		$args = $check[0];

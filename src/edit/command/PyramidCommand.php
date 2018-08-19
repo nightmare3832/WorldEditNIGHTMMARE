@@ -19,7 +19,7 @@ class PyramidCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"ピラミッドを生成します",
-			"//pyramid"
+			"//pyramid <ブロックパターン> <サイズ>"
 		);
 	}
 
@@ -32,13 +32,20 @@ class PyramidCommand extends VanillaCommand{
 			return true;
 		}
 
+		if($args[0] === "help"){
+			$sender->sendMessage("§c効果: §aピラミッドを生成します\n".
+					     "§c使い方: §a//pyramid <ブロックパターン> <サイズ>\n".
+					     "§cフラグ: §a-h: 空洞にします");
+			return false;
+		}
+
 		$check = FlagChecker::check($args);
 
 		$args = $check[0];
 		$flags = $check[1];
 
 		if(count($args) < 2){
-			$sender->sendMessage("§c使い方: //pyramid <ブロックパターン> <サイズ>");
+			$sender->sendMessage("§c使い方: §a//pyramid <ブロックパターン> <サイズ>");
 			return true;
 		}
 

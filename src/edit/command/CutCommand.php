@@ -37,6 +37,14 @@ class CutCommand extends VanillaCommand{
 			return true;
 		}
 
+		if($args[0] === "help"){
+			$sender->sendMessage("§c効果: §a選択している範囲をクリップボードにカットします\n".
+					     "§c使い方: §a//cut\n".
+					     "§cフラグ: §a-e: エンティティーもコピーします\n".
+					     "§c      : §a-m: -----------");
+			return false;
+		}
+
 		$check = FlagChecker::check($args);
 
 		$args = $check[0];

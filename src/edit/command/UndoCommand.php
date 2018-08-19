@@ -18,7 +18,7 @@ class UndoCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"Œ³‚É–ß‚·",
-			"//undo"
+			"//undo [‰ñ”]"
 		);
 	}
 
@@ -29,6 +29,12 @@ class UndoCommand extends VanillaCommand{
 
 		if(!($sender instanceof Player)){
 			return true;
+		}
+
+		if($args[0] === "help"){
+			$sender->sendMessage("˜cŒø‰Ê: ˜aŒ³‚É–ß‚µ‚Ü‚·\n".
+					     "˜cŽg‚¢•û: ˜a//undo [‰ñ”]");
+			return false;
 		}
 
 		$session = Main::getInstance()->getEditSession($sender);

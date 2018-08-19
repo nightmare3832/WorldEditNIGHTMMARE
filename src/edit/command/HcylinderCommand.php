@@ -33,6 +33,12 @@ class HcylinderCommand extends VanillaCommand{
 			return true;
 		}
 
+		if($args[0] === "help"){
+			$sender->sendMessage("§c効果: §a円柱を生成します\n".
+					     "§c使い方: §a//hcylinder <ブロックパターン> <半径>[,<半径>], <高さ>\n");
+			return false;
+		}
+
 		$copyEntities = false;
 
 		$check = FlagChecker::check($args);

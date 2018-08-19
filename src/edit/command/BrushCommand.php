@@ -51,7 +51,8 @@ class BrushCommand extends VanillaCommand{
 				case "sphere":
 				case "s":
 					if(count($args) < 2){
-						$sender->sendMessage("§c使い方: //brush sphere <ブロックパターン> [半径]");
+						$sender->sendMessage("§c使い方: §a//brush sphere <ブロックパターン> [半径]".
+								     "§cフラグ: §a-h: 空洞にします");
 						return true;
 					}
 
@@ -75,7 +76,8 @@ class BrushCommand extends VanillaCommand{
 				case "cyl":
 				case "c":
 					if(count($args) < 2){
-						$sender->sendMessage("§c使い方: //brush cylinder <ブロックパターン> [半径] [高さ]");
+						$sender->sendMessage("§c使い方: §a//brush cylinder <ブロックパターン> [半径] [高さ]".
+								     "§cフラグ: §a-h: 空洞にします");
 						return true;
 					}
 
@@ -103,7 +105,8 @@ class BrushCommand extends VanillaCommand{
 					break;
 				case "smooth":
 					if(count($args) < 3){
-						$sender->sendMessage("§c使い方: //brush smooth [サイズ] [回数]");
+						$sender->sendMessage("§c使い方: §a//brush smooth [サイズ] [回数]".
+								     "§cフラグ: §a-n: 自然のブロックのみに適応します");
 						return true;
 					}
 
@@ -122,7 +125,8 @@ class BrushCommand extends VanillaCommand{
 				case "gravity":
 				case "grav":
 					if(count($args) < 2){
-						$sender->sendMessage("§c使い方: //brush gravity [半径]");
+						$sender->sendMessage("§c使い方: §a//brush gravity [半径]".
+								     "§cフラグ: §a-h: 高さ無制限");
 						return true;
 					}
 
@@ -141,6 +145,12 @@ class BrushCommand extends VanillaCommand{
 				default:
 					break;
 			}
+		}else{
+			$sender->sendMessage("§a//brush sphere: §7球体を生成します\n".
+					     "§a//brush cylinder: §7円柱を生成します\n".
+					     "§a//brush clipboard: §7クリップボードを貼り付けます\n".
+					     "§a//brush smooth: §7地形を滑らかにします\n".
+					     "§a//brush gravity: §7重力を発生します\n".);
 		}
 		return true;
 	}
@@ -172,7 +182,7 @@ class BrushCommand extends VanillaCommand{
 			$tool->setBrush(new CylinderBrush($height));
 		}
 
-		$player->sendMessage(Main::LOGO."柱体のブラシを選択しました (".$radius." by ".$height.")");
+		$player->sendMessage(Main::LOGO."円柱のブラシを選択しました (".$radius." by ".$height.")");
 	}
 
 	public function clipboardBrush(Player $player, bool $ignoreAir, bool $usingOrigin){
