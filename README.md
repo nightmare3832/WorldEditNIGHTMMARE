@@ -116,27 +116,27 @@ IDは単体で入力することができます
 ### //brush <sphere|cylinder|clipboard|smooth|gravity>
 
 //brush sphere
-    //brush sphere <ブロックパターン> [半径]
-    球体を生成します
-    フラグ: -h をつけると空洞にします
+   //brush sphere <ブロックパターン> [半径]
+   球体を生成します
+   フラグ: -h をつけると空洞にします
 
 //brush cylinder
-    //brush cylinder <ブロックパターン> [半径] [高さ]
-    円柱を生成します
-    フラグ: -h をつけると空洞にします
+   //brush cylinder <ブロックパターン> [半径] [高さ]
+   円柱を生成します
+   フラグ: -h をつけると空洞にします
 
 //brush clipboard
-    //brush clipboard
-    クリップボードを貼り付けます
+   //brush clipboard
+   クリップボードを貼り付けます
 
 //brush smooth
-    //brush smooth [サイズ] [回数]
-    地形を回数分滑らかにします
+   //brush smooth [サイズ] [回数]
+   地形を回数分滑らかにします
 
 //brush gravity
-    //brush gravity [半径]
-    重力を発生させます
-    フラグ: -h をつけると高さを無制限にします
+   //brush gravity [半径]
+   重力を発生させます
+   フラグ: -h をつけると高さを無制限にします
 
 ### //mask [フィルター]
 ブラシに影響されるブロックを制限します
