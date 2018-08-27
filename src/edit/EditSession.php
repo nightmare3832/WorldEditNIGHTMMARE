@@ -410,7 +410,7 @@ class EditSession implements Extent{
 	public function stackCuboidRegion($region, $dir, $count, $copyAir){
 		$size = $region->getMaximumPoint()->subtract($region->getMinimumPoint())->add(1, 1, 1);
 		$to = $region->getMinimumPoint();
-		$copy = new ForwardExtentCopy($this, $region, $this->getMinimumPoint(), $to);
+		$copy = new ForwardExtentCopy($this, $region, $this, $to);
 		$copy->setRepetitions($count);
 		$aff = new AffineTransform();
 		$copy->setTransform($aff->translate($dir->multiply($size)));
