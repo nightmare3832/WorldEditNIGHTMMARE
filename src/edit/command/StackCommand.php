@@ -15,6 +15,8 @@ use edit\Main;
 use edit\blocks\BaseBlock;
 use edit\functions\operation\Operations;
 use edit\command\util\FlagChecker;
+use edit\command\util\HelpChecker;
+use edit\command\util\DefinedChecker;
 use edit\math\transform\AffineTransform;
 
 class StackCommand extends VanillaCommand{
@@ -22,8 +24,8 @@ class StackCommand extends VanillaCommand{
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"‘I‘ğ‚µ‚½”ÍˆÍ‚ğŒJ‚è•Ô‚µ‚Ü‚·",
-			"//stack [‰ñ”] [•ûŒü]"
+			"é¸æŠã—ãŸç¯„å›²ã‚’ç¹°ã‚Šè¿”ã—ã¾ã™",
+			"//stack [å›æ•°] [æ–¹å‘]"
 		);
 	}
 
@@ -36,18 +38,22 @@ class StackCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
-			$sender->sendMessage("˜cŒø‰Ê: ˜a‘I‘ğ‚µ‚½”ÍˆÍ‚ğŒJ‚è•Ô‚µ‚Ü‚·\n".
-					     "˜cg‚¢•û: ˜a//stack [‰ñ”] [•ûŒü]\n".
-					     "˜cƒtƒ‰ƒO: ˜a-s: ˆÚ“®Œã‚Ì”ÍˆÍ‚ğ‘I‘ğ‚µ‚Ü‚·\n"
-					     "˜c      : ˜a-a: ‹ó‹CƒuƒƒbƒN‚ğ–³‹‚µ‚Ü‚·");
+		if(HelpChecker::check($args)){
+			$sender->sendMessage("ÂÂ§cåŠ¹æœ: Â§aé¸æŠã—ãŸç¯„å›²ã‚’ç¹°ã‚Šè¿”ã—ã¾ã™\n".
+					     "ÂÂ§cä½¿ã„æ–¹: Â§a//stack [å›æ•°] [æ–¹å‘]\n".
+					     "ÂÂ§cãƒ•ãƒ©ã‚°: Â§a-s: ç§»å‹•å¾Œã®ç¯„å›²ã‚’é¸æŠã—ã¾ã™\n".
+					     "ÂÂ§c      : Â§a-a: ç©ºæ°—ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç„¡è¦–ã—ã¾ã™");
+			return false;
+		}
+
+		if(DefinedChecker::checkPosition($sender)) {
 			return false;
 		}
 
 		$check = FlagChecker::check($args);
 
-		$args = $check[0];
-		$flags = $check[1];
+        $args = $check[0];
+        $flags = $check[1];
 
 		$moveSelection = false;
 		$ignoreAirBlocks = false;
@@ -76,7 +82,7 @@ class StackCommand extends VanillaCommand{
 
 		$affected = $session->stackCuboidRegion($session->getRegionSelector($sender->getLevel())->getRegion(), $direction, $count, !$ignoreAirBlocks);
 		$session->remember();
-		$sender->sendMessage(Main::LOGO.$affected."ƒuƒƒbƒN‚ğ¶¬‚µ‚Ü‚µ‚½");
+		$sender->sendMessage(Main::LOGO.$affected."ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç”Ÿæˆã—ã¾ã—ãŸ");
 		return true;
 	}
 }

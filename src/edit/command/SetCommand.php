@@ -12,6 +12,8 @@ use pocketmine\Player;
 use edit\Vector;
 use edit\Main;
 use edit\functions\pattern\Pattern;
+use edit\command\util\HelpChecker;
+use edit\command\util\DefinedChecker;
 
 class SetCommand extends VanillaCommand{
 
@@ -32,9 +34,13 @@ class SetCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
+		if(HelpChecker::check($args)){
 			$sender->sendMessage("§c効果: §a選択した範囲を指定したブロックに置換します\n".
 					     "§c使い方: §a//set <ブロックパターン>");
+			return false;
+		}
+
+		if(DefinedChecker::checkPosition($sender)) {
 			return false;
 		}
 

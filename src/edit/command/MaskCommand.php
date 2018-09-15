@@ -12,14 +12,16 @@ use pocketmine\Player;
 use edit\Vector;
 use edit\Main;
 use edit\functions\mask\BlockMask;
+use edit\command\util\HelpChecker;
+use edit\command\util\DefinedChecker;
 
 class MaskCommand extends VanillaCommand{
 
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"ƒuƒ‰ƒV‚ÌƒtƒBƒ‹ƒ^[‚ğİ’è‚µ‚Ü‚·",
-			"//mask [ƒtƒBƒ‹ƒ^[]"
+			"ãƒ–ãƒ©ã‚·ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’è¨­å®šã—ã¾ã™",
+			"//mask [ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼]"
 		);
 	}
 
@@ -32,15 +34,20 @@ class MaskCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
-			$sender->sendMessage("˜cŒø‰Ê: ˜aƒuƒ‰ƒV‚ÌƒtƒBƒ‹ƒ^[‚ğİ’è‚µ‚Ü‚·\n".
-					     "˜cg‚¢•û: ˜a//mask [ƒtƒBƒ‹ƒ^[]");
+		if(HelpChecker::check($args)){
+			$sender->sendMessage("Â§cåŠ¹æœ: Â§aãƒ–ãƒ©ã‚·ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’è¨­å®šã—ã¾ã™\n".
+					     "Â§cä½¿ã„æ–¹: Â§a//mask [ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼]");
 			return false;
 		}
 
+        if(DefinedChecker::checkBrush($sender)) {
+            $sender->sendMessage(Main::LOGO."ãƒ–ãƒ©ã‚·ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“");
+            return false;
+        }
+
 		if(count($args) < 1){
 			Main::getInstance()->getBrushTool($sender->getInventory()->getItemInHand(), $sender)->setMask(null);
-			$sender->sendMessage(Main::LOGO."ƒuƒ‰ƒV‚ÌƒtƒBƒ‹ƒ^[‚ª–³Œø‚É‚È‚è‚Ü‚µ‚½");
+			$sender->sendMessage(Main::LOGO."ãƒ–ãƒ©ã‚·ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ãŒç„¡åŠ¹ã«ãªã‚Šã¾ã—ãŸ");
 		}else{
 			$items = explode(",", $args[0]);
 			$blocks = [];
@@ -54,7 +61,7 @@ class MaskCommand extends VanillaCommand{
 
 			Main::getInstance()->getBrushTool($sender->getInventory()->getItemInHand(), $sender)->setMask($mask);
 
-			$sender->sendMessage(Main::LOGO."ƒuƒ‰ƒV‚ÌƒtƒBƒ‹ƒ^[‚ğİ’è‚µ‚Ü‚µ‚½");
+			$sender->sendMessage(Main::LOGO."ãƒ–ãƒ©ã‚·ã®ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’è¨­å®šã—ã¾ã—ãŸ");
 		}
 		return true;
 	}

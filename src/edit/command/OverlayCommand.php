@@ -12,14 +12,16 @@ use pocketmine\Player;
 use edit\Vector;
 use edit\Main;
 use edit\functions\pattern\Pattern;
+use edit\command\util\HelpChecker;
+use edit\command\util\DefinedChecker;
 
 class OverlayCommand extends VanillaCommand{
 
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"”ÍˆÍ“à‚ÌƒuƒƒbƒN‚Ìã‚ÉƒuƒƒbƒN‚ğİ’u‚µ‚Ü‚·",
-			"//overlay <ƒuƒƒbƒNƒpƒ^[ƒ“>"
+			"ç¯„å›²å†…ã®ãƒ–ãƒ­ãƒƒã‚¯ã®ä¸Šã«ãƒ–ãƒ­ãƒƒã‚¯ã‚’è¨­ç½®ã—ã¾ã™",
+			"//overlay <ãƒ–ãƒ­ãƒƒã‚¯ãƒ‘ã‚¿ãƒ¼ãƒ³>"
 		);
 	}
 
@@ -32,14 +34,18 @@ class OverlayCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
-			$sender->sendMessage("˜cŒø‰Ê: ˜a”ÍˆÍ“à‚ÌƒuƒƒbƒN‚Ìã‚ÉƒuƒƒbƒN‚ğİ’u‚µ‚Ü‚·\n".
-					     "˜cg‚¢•û: ˜a//overlay <ƒuƒƒbƒNƒpƒ^[ƒ“>");
+		if(HelpChecker::check($args)){
+			$sender->sendMessage("ÂÂ§cåŠ¹æœ: Â§aç¯„å›²å†…ã®ãƒ–ãƒ­ãƒƒã‚¯ã®ä¸Šã«ãƒ–ãƒ­ãƒƒã‚¯ã‚’è¨­ç½®ã—ã¾ã™\n".
+					     "ÂÂ§cä½¿ã„æ–¹: Â§a//overlay <ãƒ–ãƒ­ãƒƒã‚¯ãƒ‘ã‚¿ãƒ¼ãƒ³>");
+			return false;
+		}
+
+		if(DefinedChecker::checkPosition($sender)) {
 			return false;
 		}
 
 		if(count($args) < 1){
-			$sender->sendMessage("˜cg‚¢•û: ˜a//overlay <ƒuƒƒbƒNƒpƒ^[ƒ“>");
+			$sender->sendMessage("ÂÂ§cä½¿ã„æ–¹: Â§a//overlay <ãƒ–ãƒ­ãƒƒã‚¯ãƒ‘ã‚¿ãƒ¼ãƒ³>");
 			return true;
 		}
 
@@ -49,7 +55,7 @@ class OverlayCommand extends VanillaCommand{
 
 		$affected = $session->overlayCuboidBlocks($session->getRegionSelector($sender->getLevel())->getRegion(), $pattern);
 		$session->remember();
-		$sender->sendMessage(Main::LOGO.$affected."ƒuƒƒbƒN‚ğ¶¬‚µ‚Ü‚µ‚½");
+		$sender->sendMessage(Main::LOGO.$affected."ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç”Ÿæˆã—ã¾ã—ãŸ");
 		return true;
 	}
 }

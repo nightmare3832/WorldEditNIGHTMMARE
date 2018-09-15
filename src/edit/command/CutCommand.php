@@ -17,13 +17,15 @@ use edit\functions\block\BlockReplace;
 use edit\functions\operation\ForwardExtentCopy;
 use edit\functions\operation\Operations;
 use edit\command\util\FlagChecker;
+use edit\command\util\HelpChecker;
+use edit\command\util\DefinedChecker;
 
 class CutCommand extends VanillaCommand{
 
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"‘I‘ğ‚µ‚Ä‚¢‚é”ÍˆÍ‚ğƒNƒŠƒbƒvƒ{[ƒh‚ÉƒJƒbƒg‚µ‚Ü‚·",
+			"é¸æŠã—ã¦ã„ã‚‹ç¯„å›²ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚«ãƒƒãƒˆã—ã¾ã™",
 			"//copy"
 		);
 	}
@@ -37,18 +39,22 @@ class CutCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
-			$sender->sendMessage("˜cŒø‰Ê: ˜a‘I‘ğ‚µ‚Ä‚¢‚é”ÍˆÍ‚ğƒNƒŠƒbƒvƒ{[ƒh‚ÉƒJƒbƒg‚µ‚Ü‚·\n".
-					     "˜cg‚¢•û: ˜a//cut\n".
-					     "˜cƒtƒ‰ƒO: ˜a-e: ƒGƒ“ƒeƒBƒeƒB[‚àƒRƒs[‚µ‚Ü‚·\n".
-					     "˜c      : ˜a-m: -----------");
+		if(HelpChecker::check($args)){
+			$sender->sendMessage("ÂÂ§cåŠ¹æœ: Â§aé¸æŠã—ã¦ã„ã‚‹ç¯„å›²ã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ã‚«ãƒƒãƒˆã—ã¾ã™\n".
+					     "ÂÂ§cä½¿ã„æ–¹: Â§a//cut\n".
+					     "ÂÂ§cãƒ•ãƒ©ã‚°: Â§a-e: ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ãƒ¼ã‚‚ã‚³ãƒ”ãƒ¼ã—ã¾ã™\n".
+					     "ÂÂ§c      : Â§a-m: -----------");
+			return false;
+		}
+
+		if(DefinedChecker::checkPosition($sender)) {
 			return false;
 		}
 
 		$check = FlagChecker::check($args);
 
-		$args = $check[0];
-		$flags = $check[1];
+        $args = $check[0];
+        $flags = $check[1];
 
 		$copyEntities = false;
 
@@ -78,7 +84,7 @@ class CutCommand extends VanillaCommand{
 		Main::getInstance()->getEditSession($sender)->setClipboard(new ClipboardHolder($clipboard, Main::getInstance()->getEditSession($sender)->getWorld()));
 		Main::getInstance()->getEditSession($sender)->remember();
 
-		$sender->sendMessage(Main::LOGO.$region->getArea()."ƒuƒƒbƒN‚ğƒRƒs[‚µ‚Ü‚µ‚½");
+		$sender->sendMessage(Main::LOGO.$region->getArea()."ãƒ–ãƒ­ãƒƒã‚¯ã‚’ã‚³ãƒ”ãƒ¼ã—ã¾ã—ãŸ");
 		return true;
 	}
 }

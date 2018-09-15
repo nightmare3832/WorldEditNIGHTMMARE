@@ -13,6 +13,7 @@ use edit\Vector;
 use edit\Main;
 use edit\functions\pattern\Pattern;
 use edit\command\util\FlagChecker;
+use edit\command\util\HelpChecker;
 
 class HcylinderCommand extends VanillaCommand{
 
@@ -33,7 +34,7 @@ class HcylinderCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
+		if(HelpChecker::check($args)){
 			$sender->sendMessage("§c効果: §a円柱を生成します\n".
 					     "§c使い方: §a//hcylinder <ブロックパターン> <半径>[,<半径>], <高さ>\n");
 			return false;

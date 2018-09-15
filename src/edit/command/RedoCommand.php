@@ -11,14 +11,15 @@ use pocketmine\Player;
 
 use edit\Vector;
 use edit\Main;
+use edit\command\util\HelpChecker;
 
 class RedoCommand extends VanillaCommand{
 
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"‚â‚è’¼‚·",
-			"//redo [‰ñ”]"
+			"ã‚„ã‚Šç›´ã™",
+			"//redo [å›æ•°]"
 		);
 	}
 
@@ -31,16 +32,16 @@ class RedoCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
-			$sender->sendMessage("˜cŒø‰Ê: ˜a‚â‚è’¼‚µ‚Ü‚·\n".
-					     "˜cg‚¢•û: ˜a//redo [‰ñ”]");
+		if(HelpChecker::check($args)){
+			$sender->sendMessage("ÂÂ§cåŠ¹æœ: Â§aã‚„ã‚Šç›´ã—ã¾ã™\n".
+					     "ÂÂ§cä½¿ã„æ–¹: Â§a//redo [å›æ•°]");
 			return false;
 		}
 
 		$session = Main::getInstance()->getEditSession($sender);
 
 		$session->redo();
-		$sender->sendMessage(Main::LOGO."‚â‚è’¼‚µ‚µ‚Ü‚µ‚½");
+		$sender->sendMessage(Main::LOGO."ã‚„ã‚Šç›´ã—ã—ã¾ã—ãŸ");
 		return true;
 	}
 }

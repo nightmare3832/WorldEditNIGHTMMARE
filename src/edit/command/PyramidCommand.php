@@ -12,14 +12,15 @@ use pocketmine\Player;
 use edit\Vector;
 use edit\Main;
 use edit\command\util\FlagChecker;
+use edit\command\util\HelpChecker;
 
 class PyramidCommand extends VanillaCommand{
 
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"ƒsƒ‰ƒ~ƒbƒh‚ğ¶¬‚µ‚Ü‚·",
-			"//pyramid <ƒuƒƒbƒNƒpƒ^[ƒ“> <ƒTƒCƒY>"
+			"ãƒ”ãƒ©ãƒŸãƒƒãƒ‰ã‚’ç”Ÿæˆã—ã¾ã™",
+			"//pyramid <ãƒ–ãƒ­ãƒƒã‚¯ãƒ‘ã‚¿ãƒ¼ãƒ³> <ã‚µã‚¤ã‚º>"
 		);
 	}
 
@@ -32,10 +33,10 @@ class PyramidCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
-			$sender->sendMessage("˜cŒø‰Ê: ˜aƒsƒ‰ƒ~ƒbƒh‚ğ¶¬‚µ‚Ü‚·\n".
-					     "˜cg‚¢•û: ˜a//pyramid <ƒuƒƒbƒNƒpƒ^[ƒ“> <ƒTƒCƒY>\n".
-					     "˜cƒtƒ‰ƒO: ˜a-h: ‹ó“´‚É‚µ‚Ü‚·");
+		if(HelpChecker::check($args)){
+			$sender->sendMessage("ÂÂ§cåŠ¹æœ: Â§aãƒ”ãƒ©ãƒŸãƒƒãƒ‰ã‚’ç”Ÿæˆã—ã¾ã™\n".
+					     "ÂÂ§cä½¿ã„æ–¹: Â§a//pyramid <ãƒ–ãƒ­ãƒƒã‚¯ãƒ‘ã‚¿ãƒ¼ãƒ³> <ã‚µã‚¤ã‚º>\n".
+					     "ÂÂ§cãƒ•ãƒ©ã‚°: Â§a-h: ç©ºæ´ã«ã—ã¾ã™");
 			return false;
 		}
 
@@ -45,7 +46,7 @@ class PyramidCommand extends VanillaCommand{
 		$flags = $check[1];
 
 		if(count($args) < 2){
-			$sender->sendMessage("˜cg‚¢•û: ˜a//pyramid <ƒuƒƒbƒNƒpƒ^[ƒ“> <ƒTƒCƒY>");
+			$sender->sendMessage("ÂÂ§cä½¿ã„æ–¹: Â§a//pyramid <ãƒ–ãƒ­ãƒƒã‚¯ãƒ‘ã‚¿ãƒ¼ãƒ³> <ã‚µã‚¤ã‚º>");
 			return true;
 		}
 
@@ -69,7 +70,7 @@ class PyramidCommand extends VanillaCommand{
 		$affected = $session->makePyramid($pos, $fill, (int) $args[1], !$hollow);
 		$session->remember();
 		Main::findFreePosition($sender);
-		$sender->sendMessage(Main::LOGO.$affected."ƒuƒƒbƒN‚ğ¶¬‚µ‚Ü‚µ‚½");
+		$sender->sendMessage(Main::LOGO.$affected."ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç”Ÿæˆã—ã¾ã—ãŸ");
 		return true;
 	}
 }

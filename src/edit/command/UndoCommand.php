@@ -11,14 +11,15 @@ use pocketmine\Player;
 
 use edit\Vector;
 use edit\Main;
+use edit\command\util\HelpChecker;
 
 class UndoCommand extends VanillaCommand{
 
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"Œ³‚É–ß‚·",
-			"//undo [‰ñ”]"
+			"å…ƒã«æˆ»ã™",
+			"//undo [å›æ•°]"
 		);
 	}
 
@@ -31,9 +32,9 @@ class UndoCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
-			$sender->sendMessage("˜cŒø‰Ê: ˜aŒ³‚É–ß‚µ‚Ü‚·\n".
-					     "˜cg‚¢•û: ˜a//undo [‰ñ”]");
+		if(HelpChecker::check($args)){
+			$sender->sendMessage("ÂÂ§cåŠ¹æœ: Â§aå…ƒã«æˆ»ã—ã¾ã™\n".
+					     "ÂÂ§cä½¿ã„æ–¹: Â§a//undo [å›æ•°]");
 			return false;
 		}
 
@@ -44,7 +45,7 @@ class UndoCommand extends VanillaCommand{
 		for($i = 0;$i < $times;$i++){
 			$undone = false;
 			$undone = $session->undo();
-			if($undone) $sender->sendMessage(Main::LOGO."Œ³‚É–ß‚µ‚Ü‚µ‚½");
+			if($undone) $sender->sendMessage(Main::LOGO."å…ƒã«æˆ»ã—ã¾ã—ãŸ");
 		}
 		return true;
 	}

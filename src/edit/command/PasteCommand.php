@@ -13,6 +13,8 @@ use edit\Vector;
 use edit\Main;
 use edit\functions\operation\Operations;
 use edit\command\util\FlagChecker;
+use edit\command\util\HelpChecker;
+use edit\command\util\DefinedChecker;
 use edit\regions\selector\CuboidRegionSelector;
 
 class PasteCommand extends VanillaCommand{
@@ -20,7 +22,7 @@ class PasteCommand extends VanillaCommand{
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"ƒNƒŠƒbƒvƒ{[ƒh‚ğ“\‚è•t‚¯‚Ü‚·",
+			"ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’è²¼ã‚Šä»˜ã‘ã¾ã™",
 			"//paste"
 		);
 	}
@@ -34,12 +36,16 @@ class PasteCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
-			$sender->sendMessage("˜cŒø‰Ê: ˜aƒNƒŠƒbƒvƒ{[ƒh‚ğ“\‚è•t‚¯‚Ü‚·\n".
-					     "˜cg‚¢•û: ˜a//paste\n".
-					     "˜cƒtƒ‰ƒO: ˜a-a: ‹ó‹CƒuƒƒbƒN‚ğ–³‹‚µ‚Ü‚·\n".
-					     "˜c      : ˜a-o: ƒRƒs[Œ³‚ğŒ´“_‚Æ‚µ‚Ü‚·\n".
-					     "˜c      : ˜a-s: ƒRƒs[Œã‚Ì”ÍˆÍ‚ğ‘I‘ğ‚µ‚Ü‚·");
+		if(HelpChecker::check($args)){
+			$sender->sendMessage("ÂÂ§cåŠ¹æœ: Â§aã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’è²¼ã‚Šä»˜ã‘ã¾ã™\n".
+					     "ÂÂ§cä½¿ã„æ–¹: Â§a//paste\n".
+					     "ÂÂ§cãƒ•ãƒ©ã‚°: Â§a-a: ç©ºæ°—ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç„¡è¦–ã—ã¾ã™\n".
+					     "ÂÂ§c      : Â§a-o: ã‚³ãƒ”ãƒ¼å…ƒã‚’åŸç‚¹ã¨ã—ã¾ã™\n".
+					     "ÂÂ§c      : Â§a-s: ã‚³ãƒ”ãƒ¼å¾Œã®ç¯„å›²ã‚’é¸æŠã—ã¾ã™");
+			return false;
+		}
+
+		if(DefinedChecker::checkClipboard($sender)) {
 			return false;
 		}
 
@@ -91,7 +97,7 @@ class PasteCommand extends VanillaCommand{
 		}
 		$session->remember();
 
-		$sender->sendMessage(Main::LOGO.$to->floor()->toString()."‚É“\‚è•t‚¯‚Ü‚µ‚½");
+		$sender->sendMessage(Main::LOGO.$to->floor()->toString()."ã«è²¼ã‚Šä»˜ã‘ã¾ã—ãŸ");
 		return true;
 	}
 }
