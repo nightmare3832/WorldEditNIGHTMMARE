@@ -56,6 +56,7 @@ use edit\command\ReplaceCommand;
 use edit\command\OverlayCommand;
 use edit\command\UndoCommand;
 use edit\command\RedoCommand;
+use edit\command\SmoothCommand;
 
 class Main extends PluginBase implements Listener{
 
@@ -106,6 +107,7 @@ class Main extends PluginBase implements Listener{
 		Server::getInstance()->getCommandMap()->register("pocketmine", new OverlayCommand("/overlay"));
 		Server::getInstance()->getCommandMap()->register("pocketmine", new UndoCommand("/undo"));
 		Server::getInstance()->getCommandMap()->register("pocketmine", new RedoCommand("/redo"));
+		Server::getInstance()->getCommandMap()->register("pocketmine", new SmoothCommand("/smooth"));
 	}
 
 	public function onDisable(){
@@ -113,7 +115,7 @@ class Main extends PluginBase implements Listener{
 
 	public function onLogin(PlayerLoginEvent $event){
 		$player = $event->getPlayer();
-		if(empty($this->sessions[$player->getName()])) $this->sessions[$player->getName()] = new EditSession($player);
+		$this->sessions[$player->getName()] = new EditSession($player);
 	}
 
 	public function onInteract(PlayerInteractEvent $event){
