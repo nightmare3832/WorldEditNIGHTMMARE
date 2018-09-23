@@ -13,6 +13,7 @@ use edit\Vector;
 use edit\Main;
 use edit\functions\pattern\Pattern;
 use edit\command\util\FlagChecker;
+use edit\command\util\HelpChecker;
 
 class CylinderCommand extends VanillaCommand{
 
@@ -33,19 +34,19 @@ class CylinderCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
+		if(HelpChecker::check($args)){
 			$sender->sendMessage("§c効果: §a円柱を生成します\n".
 					     "§c使い方: §a//cylinder <ブロックパターン> <半径>[,<半径>], <高さ>\n".
 					     "§cフラグ: §a-h: 空洞にします");
 			return false;
 		}
 
-		$copyEntities = false;
-
 		$check = FlagChecker::check($args);
 
-		$args = $check[0];
-		$flags = $check[1];
+        $args = $check[0];
+        $flags = $check[1];
+
+		$copyEntities = false;
 
 		if(count($args) < 3){
 			$sender->sendMessage("§c使い方: //cylinder <ブロックパターン> <半径>[,<半径>], <高さ>");

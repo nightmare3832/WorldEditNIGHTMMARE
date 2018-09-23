@@ -12,16 +12,19 @@ use pocketmine\Player;
 use edit\Vector;
 use edit\Main;
 use edit\functions\pattern\Pattern;
+use edit\math\convolution\HeightMap;
+use edit\math\convolution\HeightMapFilter;
+use edit\math\convolution\GaussianKernel;
 use edit\command\util\HelpChecker;
 use edit\command\util\DefinedChecker;
 
-class OverlayCommand extends VanillaCommand{
+class SmoothCommand extends VanillaCommand{
 
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"範囲内のブロックの上にブロックを設置します",
-			"//overlay <ブロックパターン>"
+			"選択した範囲のブロックを滑らかにします",
+			"//smooth <回数>"
 		);
 	}
 
@@ -35,8 +38,8 @@ class OverlayCommand extends VanillaCommand{
 		}
 
 		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §a範囲内のブロックの上にブロックを設置します\n".
-					     "§c使い方: §a//overlay <ブロックパターン>");
+			$sender->sendMessage("§c効果: §a選択した範囲のブロックを滑らかにします\n".
+					     "§c使い方: §a//smooth <回数>");
 			return false;
 		}
 
@@ -44,18 +47,14 @@ class OverlayCommand extends VanillaCommand{
 			return false;
 		}
 
-		if(count($args) < 1){
-			$sender->sendMessage("§c使い方: §a//overlay <ブロックパターン>");
-			return true;
-		}
-
-		$pattern = Main::getInstance()->getPatternFactory()->parseFromInput($args[0]);
+		if(empty($args[0])) $args[0] = 1;
 
 		$session = Main::getInstance()->getEditSession($sender);
-
-		$affected = $session->overlayCuboidBlocks($session->getRegionSelector($sender->getLevel())->getRegion(), $pattern);
-		$session->remember();
-		$sender->sendMessage(Main::LOGO.$affected."ブロックを生成しました");
+		$region = $session->getRegionSelector($sender->getLevel())->getRegion();
+		$heightMap = new HeightMap($session, $region);
+		$filter = new HeightMapFilter(new GaussianKernel(5, 1.0));
+		$affected = $heightMap->applyFilter($filter, $args[0]);
+		$sender->sendMessage(Main::LOGO.$affected."ブロックを設置しました");
 		return true;
 	}
 }

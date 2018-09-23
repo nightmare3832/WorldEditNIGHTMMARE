@@ -15,6 +15,8 @@ use edit\Main;
 use edit\blocks\BaseBlock;
 use edit\functions\operation\Operations;
 use edit\command\util\FlagChecker;
+use edit\command\util\HelpChecker;
+use edit\command\util\DefinedChecker;
 use edit\math\transform\AffineTransform;
 
 class MoveCommand extends VanillaCommand{
@@ -22,8 +24,8 @@ class MoveCommand extends VanillaCommand{
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"‘I‘ğ‚µ‚Ä‚¢‚é”ÍˆÍ‚ğˆÚ“®‚µ‚Ü‚·",
-			"//move [‹——£] [•ûŒü] [œŠO]"
+			"é¸æŠã—ã¦ã„ã‚‹ç¯„å›²ã‚’ç§»å‹•ã—ã¾ã™",
+			"//move [è·é›¢] [æ–¹å‘] [é™¤å¤–]"
 		);
 	}
 
@@ -36,10 +38,14 @@ class MoveCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
-			$sender->sendMessage("˜cŒø‰Ê: ˜a‘I‘ğ‚µ‚Ä‚¢‚é”ÍˆÍ‚ğˆÚ“®‚µ‚Ü‚·\n".
-					     "˜cg‚¢•û: ˜a//move [‹——£] [•ûŒü] [œŠO]\n".
-					     "˜cƒtƒ‰ƒO: ˜a-s: ˆÚ“®Œã‚Ì”ÍˆÍ‚ğ‘I‘ğ‚µ‚Ü‚·");
+		if(HelpChecker::check($args)){
+			$sender->sendMessage("ÂÂ§cåŠ¹æœ: Â§aé¸æŠã—ã¦ã„ã‚‹ç¯„å›²ã‚’ç§»å‹•ã—ã¾ã™\n".
+					     "ÂÂ§cä½¿ã„æ–¹: Â§a//move [è·é›¢] [æ–¹å‘] [é™¤å¤–]\n".
+					     "ÂÂ§cãƒ•ãƒ©ã‚°: Â§a-s: ç§»å‹•å¾Œã®ç¯„å›²ã‚’é¸æŠã—ã¾ã™");
+			return false;
+		}
+
+		if(DefinedChecker::checkPosition($sender)) {
 			return false;
 		}
 
@@ -72,7 +78,7 @@ class MoveCommand extends VanillaCommand{
 		$replace = new BaseBlock(Block::AIR);
 		$session->moveRegion($session->getRegionSelector($sender->getLevel())->getRegion(), $direction, $count, true, $replace);
 		$session->remember();
-		$sender->sendMessage(Main::LOGO."ƒuƒƒbƒN‚ğˆÚ“®‚µ‚Ü‚µ‚½");
+		$sender->sendMessage(Main::LOGO."ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç§»å‹•ã—ã¾ã—ãŸ");
 		return true;
 	}
 }

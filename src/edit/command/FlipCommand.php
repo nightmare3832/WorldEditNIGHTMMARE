@@ -13,6 +13,8 @@ use edit\Vector;
 use edit\Main;
 use edit\functions\operation\Operations;
 use edit\command\util\FlagChecker;
+use edit\command\util\HelpChecker;
+use edit\command\util\DefinedChecker;
 use edit\math\transform\AffineTransform;
 
 class FlipCommand extends VanillaCommand{
@@ -20,8 +22,8 @@ class FlipCommand extends VanillaCommand{
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"ƒNƒŠƒbƒvƒ{[ƒh‚ğ‚Ğ‚Á‚­‚è•Ô‚µ‚Ü‚·",
-			"//flip [<•ûŒü>]"
+			"ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã²ã£ãã‚Šè¿”ã—ã¾ã™",
+			"//flip [<æ–¹å‘>]"
 		);
 	}
 
@@ -34,9 +36,13 @@ class FlipCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
-			$sender->sendMessage("˜cŒø‰Ê: ˜aƒNƒŠƒbƒvƒ{[ƒh‚ğ‚Ğ‚Á‚­‚è•Ô‚µ‚Ü‚·\n".
-					     "˜cg‚¢•û: ˜a//flip [<•ûŒü>]");
+		if(HelpChecker::check($args)){
+			$sender->sendMessage("ÂÂ§cåŠ¹æœ: Â§aã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã²ã£ãã‚Šè¿”ã—ã¾ã™\n".
+					     "ÂÂ§cä½¿ã„æ–¹: Â§a//flip [<æ–¹å‘>]");
+			return false;
+		}
+
+		if(DefinedChecker::checkClipboard($sender)) {
 			return false;
 		}
 
@@ -53,7 +59,7 @@ class FlipCommand extends VanillaCommand{
 		$transform = $transform->scale($direction->positive()->multiply(-2)->add(1, 1, 1));
 		$holder->setTransform($holder->getTransform()->combine($transform));
 
-		$sender->sendMessage(Main::LOGO."ƒNƒŠƒbƒvƒ{[ƒh‚ğ‚Ğ‚Á‚­‚è•Ô‚µ‚Ü‚µ‚½");
+		$sender->sendMessage(Main::LOGO."ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã²ã£ãã‚Šè¿”ã—ã¾ã—ãŸ");
 		return true;
 	}
 }

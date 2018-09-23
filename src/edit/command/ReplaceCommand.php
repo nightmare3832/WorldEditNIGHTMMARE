@@ -13,14 +13,16 @@ use edit\Vector;
 use edit\Main;
 use edit\functions\pattern\Pattern;
 use edit\functions\mask\BlockMask;
+use edit\command\util\HelpChecker;
+use edit\command\util\DefinedChecker;
 
 class ReplaceCommand extends VanillaCommand{
 
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"”ÍˆÍ“à‚ÌƒuƒƒbƒN‚ğ’u‚«Š·‚¦‚Ü‚·",
-			"//replace [’u‚«Š·‚¦‚éƒuƒƒbƒN] <’u‚­ƒuƒƒbƒN>"
+			"ç¯„å›²å†…ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç½®ãæ›ãˆã¾ã™",
+			"//replace [ç½®ãæ›ãˆã‚‹ãƒ–ãƒ­ãƒƒã‚¯] <ç½®ããƒ–ãƒ­ãƒƒã‚¯>"
 		);
 	}
 
@@ -33,10 +35,14 @@ class ReplaceCommand extends VanillaCommand{
 			return true;
 		}
 
-		if($args[0] === "help"){
-			$sender->sendMessage("˜cŒø‰Ê: ˜a”ÍˆÍ“à‚ÌƒuƒƒbƒN‚ğ’u‚«Š·‚¦‚Ü‚·\n".
-					     "˜cg‚¢•û: ˜a//replace [’u‚«Š·‚¦‚éƒuƒƒbƒN] <’u‚­ƒuƒƒbƒN>");
+		if(HelpChecker::check($args)){
+			$sender->sendMessage("ÂÂ§cåŠ¹æœ: Â§aç¯„å›²å†…ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç½®ãæ›ãˆã¾ã™\n".
+					     "ÂÂ§cä½¿ã„æ–¹: Â§a//replace [ç½®ãæ›ãˆã‚‹ãƒ–ãƒ­ãƒƒã‚¯] <ç½®ããƒ–ãƒ­ãƒƒã‚¯>");
 			return false;
+		}
+
+		if(DefinedChecker::checkPosition($sender)) {
+			return fasle;
 		}
 
 		if(count($args) < 2){
@@ -56,7 +62,7 @@ class ReplaceCommand extends VanillaCommand{
 
 		$affected = $session->replaceBlocks($session->getRegionSelector($sender->getLevel())->getRegion(), $mask, $pattern);
 		$session->remember();
-		$sender->sendMessage(Main::LOGO.$affected."ƒuƒƒbƒN‚ğİ’u‚µ‚Ü‚µ‚½");
+		$sender->sendMessage(Main::LOGO.$affected."ãƒ–ãƒ­ãƒƒã‚¯ã‚’è¨­ç½®ã—ã¾ã—ãŸ");
 		return true;
 	}
 }

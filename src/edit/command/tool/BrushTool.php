@@ -52,7 +52,7 @@ class BrushTool implements TraceTool{
 		$this->material = $pattern;
 	}
 
-	public function getMaterial() : Pattern{
+	public function getMaterial() : ?Pattern{
 		return $this->material;
 	}
 
@@ -94,7 +94,7 @@ class BrushTool implements TraceTool{
 			if($existingMask == null) {
 				$editSession->setMask([$this->mask]);
 			}else if($existingMask instanceof MaskIntersection){
-				$existingMask->add($this->mask);
+				$existingMask->add([$this->mask]);
 			}else{
 				$newMask = new MaskIntersection([$existingMask]);
 				$newMask->add([$this->mask]);

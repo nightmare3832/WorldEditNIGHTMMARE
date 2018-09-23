@@ -150,7 +150,7 @@ class BrushCommand extends VanillaCommand{
 					     "§a//brush cylinder: §7円柱を生成します\n".
 					     "§a//brush clipboard: §7クリップボードを貼り付けます\n".
 					     "§a//brush smooth: §7地形を滑らかにします\n".
-					     "§a//brush gravity: §7重力を発生します\n".);
+					     "§a//brush gravity: §7重力を発生します\n");
 		}
 		return true;
 	}
