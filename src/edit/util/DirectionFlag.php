@@ -2,7 +2,7 @@
 
 namespace edit\util;
 
-class Flag{
+class DirectionFlag{
 
 	const CARDINAL = 0x1;
 	const ORDINAL = 0x2;
