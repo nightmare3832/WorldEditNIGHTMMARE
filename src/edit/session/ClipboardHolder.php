@@ -26,7 +26,7 @@ class ClipboardHolder{
 		return $this->worldData;
 	}
 
-	public function getClipboard() : Clipboard{
+	public function getClipboard() : ?Clipboard{
 		return $this->clipboard;
 	}
 

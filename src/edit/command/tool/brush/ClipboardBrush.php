@@ -22,12 +22,13 @@ class ClipboardBrush implements Brush{
 	}
 
 	public function build(EditSession $editSession, Vector $position, ?Pattern $pattern, float $size){
+		if (empty($this->holder)) return;
 		$clipboard = $this->holder->getClipboard();
 		$region = $clipboard->getRegion();
 		$centerOffset = $region->getCenter()->subtract($clipboard->getOrigin());
 
-		$operation = $holder->createPaste($editSession, $editSession->getPlayer()->getLevel())
-				->to($this->usingOrigin ? $position : $position->subtract($centerOffset())
+		$operation = $this->holder->createPaste($editSession, $editSession->getPlayer()->getLevel())
+				->to($this->usingOrigin ? $position : $position->subtract($centerOffset))
 				->ignoreAirBlocks($this->ignoreAirBlocks)
 				->build();
 

@@ -262,13 +262,12 @@ class Main extends PluginBase implements Listener{
 	public function getTool(Item $item, Player $player) : ?Tool{
 		$name = "";
 
-		if(!$item->hasCompoundTag()){
+		if(!$item->hasNamedTag()){
 			$name = "";
 		}
 
-		$tag = $item->getNamedTag();
-		if($tag->hasTag("toolData")){
-			$tag = $tag->getTag("toolData");
+		$tag = $item->getNamedTagEntry("toolData");
+		if($tag != null){
 			if($tag instanceof CompoundTag and $tag->hasTag("Data") and $tag->getTag("Data") instanceof StringTag){
 				$name = $tag->getTag("Data")->getValue();
 			}
@@ -296,7 +295,7 @@ class Main extends PluginBase implements Listener{
 		$name = (string) microtime();
 		echo($name);
 
-		if(!$item->hasCompoundTag()){
+		if(!$item->hasNamedTag()){
 			$tag = new CompoundTag("", []);
 		}else{
 			$tag = $item->getNamedTag();
@@ -310,7 +309,7 @@ class Main extends PluginBase implements Listener{
 			]));
 		}
 
-		$item->setCompoundTag($tag);
+		$item->setNamedTag($tag);
 
 		$this->tools[$name] = $tool;
 		$player->getInventory()->setItemInHand($item);
