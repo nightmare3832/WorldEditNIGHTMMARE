@@ -90,10 +90,10 @@ class PasteCommand extends VanillaCommand{
 			$clipboardOffset = $clipboard->getRegion()->getMinimumPoint()->subtract($clipboard->getOrigin());
 			$realTo = $to->add($holder->getTransform()->apply($clipboardOffset));
 			$max = $realTo->add($holder->getTransform()->apply($region->getMaximumPoint()->subtract($region->getMinimumPoint())));
-			$selector = new CuboidRegionSelector($player->getLevel(), $realTo, $max);
-			$session->setRegionSelector($player->getLevel(), $selector);
+			$selector = new CuboidRegionSelector($sender->getLevel(), $realTo, $max);
+			$session->setRegionSelector($sender->getLevel(), $selector);
 			$selector->learnChanges();
-			$selector->explaneRegionAdjust($sender);
+			$selector->explainRegionAdjust($sender);
 		}
 		$session->remember();
 

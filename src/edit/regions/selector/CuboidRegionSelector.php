@@ -87,8 +87,8 @@ class CuboidRegionSelector implements RegionSelector{
 	}
 
 	public function explainRegionAdjust(Player $player){
-		$this->explanePrimarySelection($player);
-		$this->explaneSecondarySelection($player);
+		$this->explainPrimarySelection($player);
+		$this->explainSecondarySelection($player);
 	}
 
 	public function getPrimaryPosition() : BlockVector{

@@ -16,6 +16,7 @@ use edit\command\tool\brush\SphereBrush;
 use edit\command\tool\brush\SmoothBrush;
 use edit\command\tool\brush\HollowSphereBrush;
 use edit\command\tool\brush\CylinderBrush;
+use edit\command\tool\brush\ClipboardBrush;
 use edit\command\tool\brush\HollowCylinderBrush;
 use edit\command\tool\brush\GravityBrush;
 use edit\command\util\FlagChecker;
