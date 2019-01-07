@@ -39,6 +39,10 @@ class Pos1Command extends VanillaCommand{
 			return true;
 		}
 
+		if(!Main::$canUseNotOp && !$sender->isOp()){
+			return false;
+		}
+
 		if(count($args) == 1  || (!SpaceChecker::check($args))){
 			$p = explode(",", $args[0]);
 			$pos = new Vector($p[0], $p[1], $p[2]);
