@@ -39,10 +39,10 @@ class CopyCommand extends VanillaCommand{
 		}
 
 		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §a選択している範囲をクリップボードにコピーします\n".
-					     "§c使い方: §a//copy\n".
-					     "§cフラグ: §a-e: エンティティーもコピーします\n".
-					     "§c      : §a-m: -----------");
+			$sender->sendMessage("§c効果: §a選択している範囲をクリップボードにコピーします\n".
+					     "§c使い方: §a//copy\n".
+					     "§cフラグ: §a-e: エンティティーもコピーします\n".
+					     "§c      : §a-m: -----------");
 			return false;
 		}
 

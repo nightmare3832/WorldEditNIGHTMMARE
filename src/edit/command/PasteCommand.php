@@ -37,11 +37,11 @@ class PasteCommand extends VanillaCommand{
 		}
 
 		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §aクリップボードを貼り付けます\n".
-					     "§c使い方: §a//paste\n".
-					     "§cフラグ: §a-a: 空気ブロックを無視します\n".
-					     "§c      : §a-o: コピー元を原点とします\n".
-					     "§c      : §a-s: コピー後の範囲を選択します");
+			$sender->sendMessage("§c効果: §aクリップボードを貼り付けます\n".
+					     "§c使い方: §a//paste\n".
+					     "§cフラグ: §a-a: 空気ブロックを無視します\n".
+					     "§c      : §a-o: コピー元を原点とします\n".
+					     "§c      : §a-s: コピー後の範囲を選択します");
 			return false;
 		}
 

@@ -34,9 +34,9 @@ class PyramidCommand extends VanillaCommand{
 		}
 
 		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §aピラミッドを生成します\n".
-					     "§c使い方: §a//pyramid <ブロックパターン> <サイズ>\n".
-					     "§cフラグ: §a-h: 空洞にします");
+			$sender->sendMessage("§c効果: §aピラミッドを生成します\n".
+					     "§c使い方: §a//pyramid <ブロックパターン> <サイズ>\n".
+					     "§cフラグ: §a-h: 空洞にします");
 			return false;
 		}
 
@@ -46,7 +46,7 @@ class PyramidCommand extends VanillaCommand{
 		$flags = $check[1];
 
 		if(count($args) < 2){
-			$sender->sendMessage("§c使い方: §a//pyramid <ブロックパターン> <サイズ>");
+			$sender->sendMessage("§c使い方: §a//pyramid <ブロックパターン> <サイズ>");
 			return true;
 		}
 

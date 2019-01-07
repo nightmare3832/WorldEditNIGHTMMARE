@@ -33,8 +33,8 @@ class RedoCommand extends VanillaCommand{
 		}
 
 		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §aやり直します\n".
-					     "§c使い方: §a//redo [回数]");
+			$sender->sendMessage("§c効果: §aやり直します\n".
+					     "§c使い方: §a//redo [回数]");
 			return false;
 		}
 

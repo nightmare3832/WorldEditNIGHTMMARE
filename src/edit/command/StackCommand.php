@@ -39,10 +39,10 @@ class StackCommand extends VanillaCommand{
 		}
 
 		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §a選択した範囲を繰り返します\n".
-					     "§c使い方: §a//stack [回数] [方向]\n".
-					     "§cフラグ: §a-s: 移動後の範囲を選択します\n".
-					     "§c      : §a-a: 空気ブロックを無視します");
+			$sender->sendMessage("§c効果: §a選択した範囲を繰り返します\n".
+					     "§c使い方: §a//stack [回数] [方向]\n".
+					     "§cフラグ: §a-s: 移動後の範囲を選択します\n".
+					     "§c      : §a-a: 空気ブロックを無視します");
 			return false;
 		}
 

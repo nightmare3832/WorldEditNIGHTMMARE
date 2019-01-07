@@ -36,8 +36,8 @@ class ReplaceCommand extends VanillaCommand{
 		}
 
 		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §a範囲内のブロックを置き換えます\n".
-					     "§c使い方: §a//replace [置き換えるブロック] <置くブロック>");
+			$sender->sendMessage("§c効果: §a範囲内のブロックを置き換えます\n".
+					     "§c使い方: §a//replace [置き換えるブロック] <置くブロック>");
 			return false;
 		}
 

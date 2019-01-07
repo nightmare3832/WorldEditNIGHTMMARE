@@ -33,8 +33,8 @@ class UndoCommand extends VanillaCommand{
 		}
 
 		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §a元に戻します\n".
-					     "§c使い方: §a//undo [回数]");
+			$sender->sendMessage("§c効果: §a元に戻します\n".
+					     "§c使い方: §a//undo [回数]");
 			return false;
 		}
 

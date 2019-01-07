@@ -37,8 +37,8 @@ class FlipCommand extends VanillaCommand{
 		}
 
 		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §aクリップボードをひっくり返します\n".
-					     "§c使い方: §a//flip [<方向>]");
+			$sender->sendMessage("§c効果: §aクリップボードをひっくり返します\n".
+					     "§c使い方: §a//flip [<方向>]");
 			return false;
 		}
 

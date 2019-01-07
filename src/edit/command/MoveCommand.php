@@ -39,9 +39,9 @@ class MoveCommand extends VanillaCommand{
 		}
 
 		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §a選択している範囲を移動します\n".
-					     "§c使い方: §a//move [距離] [方向] [除外]\n".
-					     "§cフラグ: §a-s: 移動後の範囲を選択します");
+			$sender->sendMessage("§c効果: §a選択している範囲を移動します\n".
+					     "§c使い方: §a//move [距離] [方向] [除外]\n".
+					     "§cフラグ: §a-s: 移動後の範囲を選択します");
 			return false;
 		}
 
