@@ -18,7 +18,7 @@ class Pos2Command extends VanillaCommand{
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"//pos2",
+			"ふたつめのポジションの設定をします",
 			"//pos2"
 		);
 		//$data = new CommandManager($this);
