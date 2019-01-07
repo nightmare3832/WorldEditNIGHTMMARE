@@ -122,6 +122,7 @@ class Main extends PluginBase implements Listener{
 		$block = $event->getBlock();
 		$player = $event->getPlayer();
 		$item = $event->getItem();
+		if (!$player->isCreative()) return;
 		if($item->getID() == self::WandID && $block->getId() != 0){
 			$pos = new Vector($block->getX(), $block->getY(), $block->getZ());
 			Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->selectPrimary($pos);
