@@ -17,6 +17,7 @@ use edit\math\convolution\HeightMapFilter;
 use edit\math\convolution\GaussianKernel;
 use edit\command\util\HelpChecker;
 use edit\command\util\DefinedChecker;
+use edit\command\util\SpaceChecker;
 
 class SmoothCommand extends VanillaCommand{
 
@@ -37,7 +38,7 @@ class SmoothCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a選択した範囲のブロックを滑らかにします\n".
 					     "§c使い方: §a//smooth <回数>");
 			return false;

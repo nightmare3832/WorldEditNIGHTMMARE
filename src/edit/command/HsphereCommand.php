@@ -14,6 +14,7 @@ use edit\Main;
 use edit\functions\pattern\Pattern;
 use edit\command\util\FlagChecker;
 use edit\command\util\HelpChecker;
+use edit\command\util\SpaceChecker;
 
 class HsphereCommand extends VanillaCommand{
 
@@ -34,7 +35,7 @@ class HsphereCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a球体を生成します\n".
 					     "§c使い方: §a//hsphere <ブロックパターン> <半径>[,<半径>,<半径>] [頭上?]\n");
 			return false;

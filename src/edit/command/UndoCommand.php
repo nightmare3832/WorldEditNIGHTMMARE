@@ -12,6 +12,7 @@ use pocketmine\Player;
 use edit\Vector;
 use edit\Main;
 use edit\command\util\HelpChecker;
+use edit\command\util\SpaceChecker;
 
 class UndoCommand extends VanillaCommand{
 
@@ -32,7 +33,7 @@ class UndoCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a元に戻します\n".
 					     "§c使い方: §a//undo [回数]");
 			return false;

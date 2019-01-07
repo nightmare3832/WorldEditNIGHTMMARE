@@ -18,6 +18,7 @@ use edit\command\util\FlagChecker;
 use edit\command\util\HelpChecker;
 use edit\command\util\DefinedChecker;
 use edit\math\transform\AffineTransform;
+use edit\command\util\SpaceChecker;
 
 class StackCommand extends VanillaCommand{
 
@@ -38,7 +39,7 @@ class StackCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a選択した範囲を繰り返します\n".
 					     "§c使い方: §a//stack [回数] [方向]\n".
 					     "§cフラグ: §a-s: 移動後の範囲を選択します\n".

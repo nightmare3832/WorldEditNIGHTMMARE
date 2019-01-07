@@ -13,6 +13,7 @@ use edit\Vector;
 use edit\Main;
 use edit\command\util\FlagChecker;
 use edit\command\util\HelpChecker;
+use edit\command\util\SpaceChecker;
 
 class PyramidCommand extends VanillaCommand{
 
@@ -33,7 +34,7 @@ class PyramidCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §aピラミッドを生成します\n".
 					     "§c使い方: §a//pyramid <ブロックパターン> <サイズ>\n".
 					     "§cフラグ: §a-h: 空洞にします");

@@ -19,6 +19,7 @@ use edit\functions\operation\Operations;
 use edit\command\util\FlagChecker;
 use edit\command\util\HelpChecker;
 use edit\command\util\DefinedChecker;
+use edit\command\util\SpaceChecker;
 
 class CutCommand extends VanillaCommand{
 
@@ -39,7 +40,7 @@ class CutCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a選択している範囲をクリップボードにカットします\n".
 					     "§c使い方: §a//cut\n".
 					     "§cフラグ: §a-e: エンティティーもコピーします\n".

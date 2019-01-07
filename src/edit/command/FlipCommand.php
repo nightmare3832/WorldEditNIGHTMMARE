@@ -16,6 +16,7 @@ use edit\command\util\FlagChecker;
 use edit\command\util\HelpChecker;
 use edit\command\util\DefinedChecker;
 use edit\math\transform\AffineTransform;
+use edit\command\util\SpaceChecker;
 
 class FlipCommand extends VanillaCommand{
 
@@ -36,7 +37,7 @@ class FlipCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §aクリップボードをひっくり返します\n".
 					     "§c使い方: §a//flip [<方向>]");
 			return false;
