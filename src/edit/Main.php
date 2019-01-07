@@ -60,8 +60,8 @@ use edit\command\SmoothCommand;
 
 class Main extends PluginBase implements Listener{
 
-	const WandID = 271;
-	const BrusherID = 280;
+	public static $wandID = 271;
+	public static $canUseNotOp = false;
 
 	const LOGO = "[Edit] ";
 
@@ -80,6 +80,14 @@ class Main extends PluginBase implements Listener{
 		Server::getInstance()->getPluginManager()->registerEvents($this,  $this);
 		if(!file_exists($this->getDataFolder())) mkdir($this->getDataFolder(), 0744, true);
 		if(!file_exists($this->getDataFolder()."clipboard")) mkdir($this->getDataFolder()."clipboard", 0744, true);
+		$this->config = new Config($this->getDataFolder()."config.yml", Config::YAML,
+			[
+				"選択ツール" => 271,
+				"OP以外も使えるようにする" => false
+			]
+		);
+		self::$wandID = $this->config->get("選択ツール");
+		self::$canUseNotOp = $this->config->get("OP以外も使えるようにする");
 		$this->patternFactory = new PatternFactory();
 		$this->blockFactory = new BlockFactory();
 		$this->blockRegistry = new LegacyBlockRegistry();
@@ -122,8 +130,11 @@ class Main extends PluginBase implements Listener{
 		$block = $event->getBlock();
 		$player = $event->getPlayer();
 		$item = $event->getItem();
-		if (!$player->isCreative()) return;
-		if($item->getID() == self::WandID && $block->getId() != 0){
+		if(!$player->isCreative()) return;
+		if(!self::$canUseNotOp){
+			if(!$player->isOp()) return;
+		}
+		if($item->getID() == self::$wandID && $block->getId() != 0){
 			$pos = new Vector($block->getX(), $block->getY(), $block->getZ());
 			Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->selectPrimary($pos);
 			Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->explainPrimarySelection($player);
@@ -135,7 +146,11 @@ class Main extends PluginBase implements Listener{
 	public function onBreak(BlockBreakEvent $event){
 		$player = $event->getPlayer();
 		$item = $event->getItem();
-		if($item->getID() == self::WandID){
+		if(!$player->isCreative()) return;
+		if(!self::$canUseNotOp){
+			if(!$player->isOp()) return;
+		}
+		if($item->getID() == self::$wandID){
 			$block = $event->getBlock();
 			$pos = new Vector($block->getX(), $block->getY(), $block->getZ());
 			Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->selectSecondary($pos);
@@ -289,7 +304,7 @@ class Main extends PluginBase implements Listener{
 	}
 
 	public function setTool(Item $item, Tool $tool, Player $player){
-		if($item->getId() == self::WandID){
+		if($item->getId() == self::$wandID){
 			return;
 		}
 
