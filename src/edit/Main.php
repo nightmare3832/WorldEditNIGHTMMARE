@@ -80,12 +80,10 @@ class Main extends PluginBase implements Listener{
 		Server::getInstance()->getPluginManager()->registerEvents($this,  $this);
 		if(!file_exists($this->getDataFolder())) mkdir($this->getDataFolder(), 0744, true);
 		if(!file_exists($this->getDataFolder()."clipboard")) mkdir($this->getDataFolder()."clipboard", 0744, true);
-		$this->config = new Config($this->getDataFolder()."config.yml", Config::YAML,
-			[
-				"選択ツール" => 271,
-				"OP以外も使えるようにする" => false
-			]
-		);
+		$this->config = new Config($this->getDataFolder()."config.yml", Config::YAML, [
+			"選択ツール" => 271,
+			"OP以外も使えるようにする" => false
+		]);
 		self::$wandID = $this->config->get("選択ツール");
 		self::$canUseNotOp = $this->config->get("OP以外も使えるようにする");
 		$this->patternFactory = new PatternFactory();
@@ -131,9 +129,7 @@ class Main extends PluginBase implements Listener{
 		$player = $event->getPlayer();
 		$item = $event->getItem();
 		if(!$player->isCreative()) return;
-		if(!self::$canUseNotOp){
-			if(!$player->isOp()) return;
-		}
+		if(!self::$canUseNotOp && !$player->isOp()) return;
 		if($item->getID() == self::$wandID && $block->getId() != 0){
 			$pos = new Vector($block->getX(), $block->getY(), $block->getZ());
 			Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->selectPrimary($pos);
@@ -147,9 +143,7 @@ class Main extends PluginBase implements Listener{
 		$player = $event->getPlayer();
 		$item = $event->getItem();
 		if(!$player->isCreative()) return;
-		if(!self::$canUseNotOp){
-			if(!$player->isOp()) return;
-		}
+		if(!self::$canUseNotOp && !$player->isOp()) return;
 		if($item->getID() == self::$wandID){
 			$block = $event->getBlock();
 			$pos = new Vector($block->getX(), $block->getY(), $block->getZ());
