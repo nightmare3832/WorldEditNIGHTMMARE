@@ -15,6 +15,7 @@ use edit\functions\pattern\Pattern;
 use edit\functions\mask\BlockMask;
 use edit\command\util\HelpChecker;
 use edit\command\util\DefinedChecker;
+use edit\command\util\SpaceChecker;
 
 class ReplaceCommand extends VanillaCommand{
 
@@ -35,9 +36,9 @@ class ReplaceCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §a範囲内のブロックを置き換えます\n".
-					     "§c使い方: §a//replace [置き換えるブロック] <置くブロック>");
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
+			$sender->sendMessage("§c効果: §a範囲内のブロックを置き換えます\n".
+					     "§c使い方: §a//replace [置き換えるブロック] <置くブロック>");
 			return false;
 		}
 

@@ -14,6 +14,7 @@ use edit\Main;
 use edit\functions\pattern\Pattern;
 use edit\command\util\FlagChecker;
 use edit\command\util\HelpChecker;
+use edit\command\util\SpaceChecker;
 
 class CylinderCommand extends VanillaCommand{
 
@@ -34,7 +35,7 @@ class CylinderCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a円柱を生成します\n".
 					     "§c使い方: §a//cylinder <ブロックパターン> <半径>[,<半径>], <高さ>\n".
 					     "§cフラグ: §a-h: 空洞にします");

@@ -14,6 +14,7 @@ use edit\Main;
 use edit\functions\pattern\Pattern;
 use edit\command\util\HelpChecker;
 use edit\command\util\DefinedChecker;
+use edit\command\util\SpaceChecker;
 
 class OverlayCommand extends VanillaCommand{
 
@@ -34,9 +35,9 @@ class OverlayCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §a範囲内のブロックの上にブロックを設置します\n".
-					     "§c使い方: §a//overlay <ブロックパターン>");
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
+			$sender->sendMessage("§c効果: §a範囲内のブロックの上にブロックを設置します\n".
+					     "§c使い方: §a//overlay <ブロックパターン>");
 			return false;
 		}
 
@@ -45,7 +46,7 @@ class OverlayCommand extends VanillaCommand{
 		}
 
 		if(count($args) < 1){
-			$sender->sendMessage("§c使い方: §a//overlay <ブロックパターン>");
+			$sender->sendMessage("§c使い方: §a//overlay <ブロックパターン>");
 			return true;
 		}
 

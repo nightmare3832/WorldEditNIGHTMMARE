@@ -14,6 +14,7 @@ use edit\Main;
 use edit\functions\pattern\Pattern;
 use edit\command\util\HelpChecker;
 use edit\command\util\DefinedChecker;
+use edit\command\util\SpaceChecker;
 
 class SetCommand extends VanillaCommand{
 
@@ -34,7 +35,7 @@ class SetCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a選択した範囲を指定したブロックに置換します\n".
 					     "§c使い方: §a//set <ブロックパターン>");
 			return false;

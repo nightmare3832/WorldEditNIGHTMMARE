@@ -122,27 +122,28 @@ class Main extends PluginBase implements Listener{
 		$block = $event->getBlock();
 		$player = $event->getPlayer();
 		$item = $event->getItem();
-			if($item->getID() == self::WandID && $block->getId() != 0){
-				$pos = new Vector($block->getX(), $block->getY(), $block->getZ());
-				Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->selectPrimary($pos);
-				Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->explainPrimarySelection($player);
-			}else if($this->getTool($item, $player) != null){
-				$this->getTool($item, $player)->actPrimary($player);
-			}
+		if (!$player->isCreative()) return;
+		if($item->getID() == self::WandID && $block->getId() != 0){
+			$pos = new Vector($block->getX(), $block->getY(), $block->getZ());
+			Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->selectPrimary($pos);
+			Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->explainPrimarySelection($player);
+		}else if($this->getTool($item, $player) != null){
+			$this->getTool($item, $player)->actPrimary($player);
+		}
 	}
 
 	public function onBreak(BlockBreakEvent $event){
 		$player = $event->getPlayer();
 		$item = $event->getItem();
-			if($item->getID() == self::WandID){
-				$block = $event->getBlock();
-				$pos = new Vector($block->getX(), $block->getY(), $block->getZ());
-				Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->selectSecondary($pos);
-				Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->explainSecondarySelection($player);
-				$event->setCancelled();
-			}else if($this->getTool($item, $player) != null){
-				$event->setCancelled();
-			}
+		if($item->getID() == self::WandID){
+			$block = $event->getBlock();
+			$pos = new Vector($block->getX(), $block->getY(), $block->getZ());
+			Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->selectSecondary($pos);
+			Main::getInstance()->getEditSession($player)->getRegionSelector($player->getLevel())->explainSecondarySelection($player);
+			$event->setCancelled();
+		}else if($this->getTool($item, $player) != null){
+			$event->setCancelled();
+		}
 	}
 
 	public function getEditSession(Player $player){

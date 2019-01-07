@@ -16,6 +16,7 @@ use edit\command\util\FlagChecker;
 use edit\command\util\HelpChecker;
 use edit\command\util\DefinedChecker;
 use edit\regions\selector\CuboidRegionSelector;
+use edit\command\util\SpaceChecker;
 
 class PasteCommand extends VanillaCommand{
 
@@ -36,12 +37,12 @@ class PasteCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §aクリップボードを貼り付けます\n".
-					     "§c使い方: §a//paste\n".
-					     "§cフラグ: §a-a: 空気ブロックを無視します\n".
-					     "§c      : §a-o: コピー元を原点とします\n".
-					     "§c      : §a-s: コピー後の範囲を選択します");
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
+			$sender->sendMessage("§c効果: §aクリップボードを貼り付けます\n".
+					     "§c使い方: §a//paste\n".
+					     "§cフラグ: §a-a: 空気ブロックを無視します\n".
+					     "§c      : §a-o: コピー元を原点とします\n".
+					     "§c      : §a-s: コピー後の範囲を選択します");
 			return false;
 		}
 

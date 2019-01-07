@@ -11,13 +11,14 @@ use pocketmine\Player;
 
 use edit\Vector;
 use edit\Main;
+use edit\command\util\SpaceChecker;
 
 class Pos1Command extends VanillaCommand{
 
 	public function __construct(string $name){
 		parent::__construct(
 			$name,
-			"//pos1",
+			"ひとつめのポジションを設定します",
 			"//pos1"
 		);
 		//$data = new CommandManager($this);
@@ -38,7 +39,7 @@ class Pos1Command extends VanillaCommand{
 			return true;
 		}
 
-		if(count($args) == 1){
+		if(count($args) == 1  || (!SpaceChecker::check($args))){
 			$p = explode(",", $args[0]);
 			$pos = new Vector($p[0], $p[1], $p[2]);
 		}else{

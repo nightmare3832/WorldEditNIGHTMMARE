@@ -18,6 +18,7 @@ use edit\command\util\FlagChecker;
 use edit\command\util\HelpChecker;
 use edit\command\util\DefinedChecker;
 use edit\math\transform\AffineTransform;
+use edit\command\util\SpaceChecker;
 
 class MoveCommand extends VanillaCommand{
 
@@ -38,10 +39,10 @@ class MoveCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §a選択している範囲を移動します\n".
-					     "§c使い方: §a//move [距離] [方向] [除外]\n".
-					     "§cフラグ: §a-s: 移動後の範囲を選択します");
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
+			$sender->sendMessage("§c効果: §a選択している範囲を移動します\n".
+					     "§c使い方: §a//move [距離] [方向] [除外]\n".
+					     "§cフラグ: §a-s: 移動後の範囲を選択します");
 			return false;
 		}
 

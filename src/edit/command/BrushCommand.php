@@ -11,12 +11,13 @@ use pocketmine\Player;
 
 use edit\Vector;
 use edit\Main;
+use edit\session\ClipboardHolder;
 use edit\functions\pattern\Pattern;
 use edit\command\tool\brush\SphereBrush;
 use edit\command\tool\brush\SmoothBrush;
 use edit\command\tool\brush\HollowSphereBrush;
-use edit\command\tool\brush\CylinderBrush;
 use edit\command\tool\brush\ClipboardBrush;
+use edit\command\tool\brush\CylinderBrush;
 use edit\command\tool\brush\HollowCylinderBrush;
 use edit\command\tool\brush\GravityBrush;
 use edit\command\util\FlagChecker;
@@ -190,8 +191,11 @@ class BrushCommand extends VanillaCommand{
 		//checkMaxBrushRadius
 
 		$holder = Main::getInstance()->getEditSession($player)->getClipboard();
+		if(!($holder instanceof ClipboardHolder)){
+			$player->sendMessage(Main::LOGO."クリップボードに何もありません");
+			return;
+		}
 		$clipboard = $holder->getClipboard();
-
 		$size = $clipboard->getDimensions();
 
 		$tool = Main::getInstance()->getBrushTool($player->getInventory()->getItemInHand(), $player);

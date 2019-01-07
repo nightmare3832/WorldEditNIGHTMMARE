@@ -12,6 +12,7 @@ use pocketmine\Player;
 use edit\Vector;
 use edit\Main;
 use edit\command\util\HelpChecker;
+use edit\command\util\SpaceChecker;
 
 class RedoCommand extends VanillaCommand{
 
@@ -32,9 +33,9 @@ class RedoCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
-			$sender->sendMessage("§c効果: §aやり直します\n".
-					     "§c使い方: §a//redo [回数]");
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
+			$sender->sendMessage("§c効果: §aやり直します\n".
+					     "§c使い方: §a//redo [回数]");
 			return false;
 		}
 

@@ -14,6 +14,7 @@ use edit\Main;
 use edit\functions\mask\BlockMask;
 use edit\command\util\HelpChecker;
 use edit\command\util\DefinedChecker;
+use edit\command\util\SpaceChecker;
 
 class MaskCommand extends VanillaCommand{
 
@@ -34,7 +35,7 @@ class MaskCommand extends VanillaCommand{
 			return true;
 		}
 
-		if(HelpChecker::check($args)){
+		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §aブラシのフィルターを設定します\n".
 					     "§c使い方: §a//mask [フィルター]");
 			return false;
