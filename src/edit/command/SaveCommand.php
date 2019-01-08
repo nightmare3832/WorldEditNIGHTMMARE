@@ -63,6 +63,14 @@ class SaveCommand extends VanillaCommand{
 
 			$text = serialize($target);
 			file_put_contents(Main::$clipboardDirectory."/".$args[0].".clipboard", $text);
+			
+			/**
+			 * FileWriteTaskで非同期書き込み
+			 * 処理内容はfile_put_contents()と一緒。非同期で行う
+			 * $task = new FileWriteTask(Main::$clipboardDirectory."/".$args[0].".clipboard",$text);
+			 * Main::getInstance()->getServer()->getAsyncPool()->submitTask($task);
+			 */
+			 
 			$sender->sendMessage(Main::LOGO."クリップボードを保存しました\n".Main::$clipboardDirectory."/".$args[0].".clipboard");
 		}else{
 			$sender->sendMessage(Main::LOGO."名前を指定してください\n§c使い方: §a//save <名前>");
