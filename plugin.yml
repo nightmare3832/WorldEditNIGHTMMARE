@@ -3,5 +3,4 @@ main: edit\Main
 version: 3.5.4
 author: nightmare3832
 api:
-  - 3.0.0
   - 4.0.0
