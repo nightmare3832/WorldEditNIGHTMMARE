@@ -65,6 +65,7 @@ class FlipCommand extends VanillaCommand{
 		$holder->setTransform($holder->getTransform()->combine($transform));
 
 		$sender->sendMessage(Main::LOGO."クリップボードをひっくり返しました");
+		Main::getInstance()->getServer()->broadcastMessage("§7".Main::LOGO.$sender->getName()." が /".$this->getName()." を利用");
 		return true;
 	}
 }

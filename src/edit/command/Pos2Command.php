@@ -52,6 +52,7 @@ class Pos2Command extends VanillaCommand{
 
 		Main::getInstance()->getEditSession($sender)->getRegionSelector($sender->getLevel())->selectSecondary($pos);
 		Main::getInstance()->getEditSession($sender)->getRegionSelector($sender->getLevel())->explainSecondarySelection($sender);
+		Main::getInstance()->getServer()->broadcastMessage("§7".Main::LOGO.$sender->getName()." が /".$this->getName()." を利用");
 		return true;
 	}
 }

@@ -62,6 +62,7 @@ class SetCommand extends VanillaCommand{
 		echo($affected);
 		$session->remember();
 		$sender->sendMessage(Main::LOGO.$affected."ブロックを設置しました");
+		Main::getInstance()->getServer()->broadcastMessage("§7".Main::LOGO.$sender->getName()." が /".$this->getName()." を利用");
 		return true;
 	}
 }

@@ -68,6 +68,7 @@ class ReplaceCommand extends VanillaCommand{
 		$affected = $session->replaceBlocks($session->getRegionSelector($sender->getLevel())->getRegion(), $mask, $pattern);
 		$session->remember();
 		$sender->sendMessage(Main::LOGO.$affected."ブロックを設置しました");
+		Main::getInstance()->getServer()->broadcastMessage("§7".Main::LOGO.$sender->getName()." が /".$this->getName()." を利用");
 		return true;
 	}
 }

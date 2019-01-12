@@ -103,6 +103,7 @@ class PasteCommand extends VanillaCommand{
 		$session->remember();
 
 		$sender->sendMessage(Main::LOGO.$to->floor()->toString()."に貼り付けました");
+		Main::getInstance()->getServer()->broadcastMessage("§7".Main::LOGO.$sender->getName()." が /".$this->getName()." を利用");
 		return true;
 	}
 }
