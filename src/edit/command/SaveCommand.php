@@ -72,6 +72,7 @@ class SaveCommand extends VanillaCommand{
 			 */
 			 
 			$sender->sendMessage(Main::LOGO."クリップボードを保存しました\n".Main::$clipboardDirectory."/".$args[0].".clipboard");
+			Main::getInstance()->getServer()->broadcastMessage("§7".Main::LOGO.$sender->getName()." が /".$this->getName()." を利用");
 		}else{
 			$sender->sendMessage(Main::LOGO."名前を指定してください\n§c使い方: §a//save <名前>");
 		}

@@ -90,6 +90,7 @@ class CutCommand extends VanillaCommand{
 		Main::getInstance()->getEditSession($sender)->remember();
 
 		$sender->sendMessage(Main::LOGO.$region->getArea()."ブロックをコピーしました");
+		Main::getInstance()->getServer()->broadcastMessage("§7".Main::LOGO.$sender->getName()." が /".$this->getName()." を利用");
 		return true;
 	}
 }

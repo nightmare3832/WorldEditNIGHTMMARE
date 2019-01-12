@@ -47,6 +47,7 @@ class RedoCommand extends VanillaCommand{
 
 		$session->redo();
 		$sender->sendMessage(Main::LOGO."やり直ししました");
+		Main::getInstance()->getServer()->broadcastMessage("§7".Main::LOGO.$sender->getName()." が /".$this->getName()." を利用");
 		return true;
 	}
 }

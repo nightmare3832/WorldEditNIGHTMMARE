@@ -52,6 +52,7 @@ class UndoCommand extends VanillaCommand{
 			$undone = $session->undo();
 			if($undone) $sender->sendMessage(Main::LOGO."元に戻しました");
 		}
+		Main::getInstance()->getServer()->broadcastMessage("§7".Main::LOGO.$sender->getName()." が /".$this->getName()." を利用");
 		return true;
 	}
 }
