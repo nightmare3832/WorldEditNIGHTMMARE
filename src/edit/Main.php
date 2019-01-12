@@ -57,11 +57,14 @@ use edit\command\OverlayCommand;
 use edit\command\UndoCommand;
 use edit\command\RedoCommand;
 use edit\command\SmoothCommand;
+use edit\command\SaveCommand;
 
 class Main extends PluginBase implements Listener{
 
 	public static $wandID = 271;
 	public static $canUseNotOp = false;
+
+	public static $clipboardDirectory;
 
 	const LOGO = "[Edit] ";
 
@@ -79,7 +82,8 @@ class Main extends PluginBase implements Listener{
 		Server::getInstance()->getLogger()->info("[Edit]§a WorldEditNIGHTMARE_v3.5.4を読み込みました");
 		Server::getInstance()->getPluginManager()->registerEvents($this,  $this);
 		if(!file_exists($this->getDataFolder())) mkdir($this->getDataFolder(), 0744, true);
-		if(!file_exists($this->getDataFolder()."clipboard")) mkdir($this->getDataFolder()."clipboard", 0744, true);
+		self::$clipboardDirectory = $this->getDataFolder()."clipboard";
+		if(!file_exists($this->getDataFolder()."clipboard")) mkdir(self::$clipboardDirectory, 0744, true);
 		$this->config = new Config($this->getDataFolder()."config.yml", Config::YAML, [
 			"選択ツール" => 271,
 			"OP以外も使えるようにする" => false
@@ -114,6 +118,7 @@ class Main extends PluginBase implements Listener{
 		Server::getInstance()->getCommandMap()->register("pocketmine", new UndoCommand("/undo"));
 		Server::getInstance()->getCommandMap()->register("pocketmine", new RedoCommand("/redo"));
 		Server::getInstance()->getCommandMap()->register("pocketmine", new SmoothCommand("/smooth"));
+		Server::getInstance()->getCommandMap()->register("pocketmine", new SaveCommand("/save"));
 	}
 
 	public function onDisable(){
