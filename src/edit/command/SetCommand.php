@@ -35,6 +35,10 @@ class SetCommand extends VanillaCommand{
 			return true;
 		}
 
+		if(!Main::$canUseNotOp && !$sender->isOp()){
+			return false;
+		}
+
 		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a選択した範囲を指定したブロックに置換します\n".
 					     "§c使い方: §a//set <ブロックパターン>");

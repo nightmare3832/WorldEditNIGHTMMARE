@@ -34,6 +34,10 @@ class PyramidCommand extends VanillaCommand{
 			return true;
 		}
 
+		if(!Main::$canUseNotOp && !$sender->isOp()){
+			return false;
+		}
+
 		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §aピラミッドを生成します\n".
 					     "§c使い方: §a//pyramid <ブロックパターン> <サイズ>\n".

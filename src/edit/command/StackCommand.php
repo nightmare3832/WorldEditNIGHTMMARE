@@ -39,6 +39,10 @@ class StackCommand extends VanillaCommand{
 			return true;
 		}
 
+		if(!Main::$canUseNotOp && !$sender->isOp()){
+			return false;
+		}
+
 		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a選択した範囲を繰り返します\n".
 					     "§c使い方: §a//stack [回数] [方向]\n".

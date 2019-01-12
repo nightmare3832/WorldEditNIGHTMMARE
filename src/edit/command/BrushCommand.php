@@ -41,6 +41,10 @@ class BrushCommand extends VanillaCommand{
 			return true;
 		}
 
+		if(!Main::$canUseNotOp && !$sender->isOp()){
+			return false;
+		}
+
 		$copyEntities = false;
 
 		if(count($args) >= 1){

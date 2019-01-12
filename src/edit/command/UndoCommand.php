@@ -33,6 +33,10 @@ class UndoCommand extends VanillaCommand{
 			return true;
 		}
 
+		if(!Main::$canUseNotOp && !$sender->isOp()){
+			return false;
+		}
+
 		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a元に戻します\n".
 					     "§c使い方: §a//undo [回数]");
