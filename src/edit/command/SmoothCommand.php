@@ -38,6 +38,10 @@ class SmoothCommand extends VanillaCommand{
 			return true;
 		}
 
+		if(!Main::$canUseNotOp && !$sender->isOp()){
+			return false;
+		}
+
 		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a選択した範囲のブロックを滑らかにします\n".
 					     "§c使い方: §a//smooth <回数>");

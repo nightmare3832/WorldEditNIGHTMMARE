@@ -35,6 +35,10 @@ class SphereCommand extends VanillaCommand{
 			return true;
 		}
 
+		if(!Main::$canUseNotOp && !$sender->isOp()){
+			return false;
+		}
+
 		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a球体を生成します\n".
 					     "§c使い方: §a//sphere <ブロックパターン> <半径>[,<半径>,<半径>] [頭上?]\n".

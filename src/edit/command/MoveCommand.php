@@ -39,6 +39,10 @@ class MoveCommand extends VanillaCommand{
 			return true;
 		}
 
+		if(!Main::$canUseNotOp && !$sender->isOp()){
+			return false;
+		}
+
 		if(HelpChecker::check($args) || SpaceChecker::check($args)){
 			$sender->sendMessage("§c効果: §a選択している範囲を移動します\n".
 					     "§c使い方: §a//move [距離] [方向] [除外]\n".
